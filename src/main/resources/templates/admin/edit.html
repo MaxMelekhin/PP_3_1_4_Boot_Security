@@ -10,7 +10,7 @@
 
      Enter name <input type="text" th:field="*{username}"/>
     <br><br>
-    Enter password <input type="text" th:field="*{password}"/>
+    Enter password <input type="password" th:field="*{password}"/>
     <br><br>
     Enter email <input type="text" th:field="*{email}"/>
     <br><br>
@@ -26,9 +26,8 @@
     </p>
 
     <input type="submit" value="Update">
-    <br><br>
-    <a th:href="@{/logout}"><input type="button"  value="Logout"></a>
-
 </form>
+<br><br>
+<a th:href="@{/logout}"><input type="button"  value="Logout"></a>
 </body>
 </html>
