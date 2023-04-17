@@ -8,7 +8,7 @@
 <br>
 <form th:action="@{/admin/edit/{id}(id=${user.user_id})}" th:object="${user}" th:method="patch">
 
-     Enter name <input type="text" th:field="*{username}"/>
+    Enter name <input type="text" th:field="*{username}"/>
     <br><br>
     Enter password <input type="password" th:field="*{password}"/>
     <br><br>
@@ -28,6 +28,6 @@
     <input type="submit" value="Update">
 </form>
 <br><br>
-<a th:href="@{/logout}"><input type="button"  value="Logout"></a>
+<a th:href="@{/logout}"><input type="button" value="Logout"></a>
 </body>
 </html>
