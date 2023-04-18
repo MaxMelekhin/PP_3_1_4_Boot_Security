@@ -46,11 +46,13 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
+    @Transactional
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
+    @Transactional
     public void deleteUserById(long id) {
         userRepository.deleteById(id);
     }
@@ -59,7 +61,7 @@ public class UserService implements UserDetailsService {
         return roleRepository.findAll();
     }
 
-    @Transactional
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
