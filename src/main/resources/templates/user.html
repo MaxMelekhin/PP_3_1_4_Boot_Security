@@ -9,20 +9,20 @@
 <body>
 <h1>User, welcome spring boot security page!</h1>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Password</th>
-            <th>Email</th>
-        </tr>
-        <th:block th:object="${user}">
-            <td th:text="${user.username}"></td>
-            <td th:text="${user.password}"></td>
-            <td th:text="${user.email}"></td>
-        </th:block>
-    </table>
-    <br><br>
-    <a th:href="@{/logout}"><input type="button" value="Logout"></a>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Email</th>
+    </tr>
+    <th:block th:object="${user}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.email}"></td>
+    </th:block>
+</table>
+<br><br>
+<a th:href="@{/logout}"><input type="button" value="Logout"></a>
 
 </body>
 </html>
