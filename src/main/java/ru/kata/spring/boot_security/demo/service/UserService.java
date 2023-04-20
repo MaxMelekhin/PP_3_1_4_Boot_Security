@@ -36,15 +36,17 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
+
     public User findUserById(long id) {
         User user = userRepository.findById(id).orElse(null);
         user.setPassword("");
         return user;
     }
 
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User findByUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
+
 
     @Transactional
     public void saveUser(User user) {
@@ -61,14 +63,13 @@ public class UserService implements UserDetailsService {
         return roleRepository.findAll();
     }
 
-
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findUserByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+        return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
 

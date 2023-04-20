@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>User Info</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
 <br>
 <form th:action="@{/admin/edit/{id}(id=${user.user_id})}" th:object="${user}" th:method="patch">
 
-    Enter name <input type="text" th:field="*{username}"/>
+    First name<input type="text" th:field="*{username}"/>
     <br><br>
-    Enter password <input type="password" th:field="*{password}"/>
+    Last name<input type="text" th:field="*{lastname}"/>
     <br><br>
-    Enter email <input type="text" th:field="*{email}"/>
+    Age <input type="text" th:field="*{age}"/>
+    <br><br>
+    Enter password <input type="email" th:field="*{email}"/>
+    <br><br>
+    Enter email <input type="password" th:field="*{password}"/>
     <br><br>
     <p>
         Roles:

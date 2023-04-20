@@ -16,8 +16,12 @@ public class User implements UserDetails {
     private Long user_id;
     @Column(name = "username")
     private String username;
+    @Column(name = "lastname")
+    private String lastname;
     @Column(name = "password")
     private String password;
+    @Column(name = "age")
+    private int age;
     @Column(name = "email")
     private String email;
 
