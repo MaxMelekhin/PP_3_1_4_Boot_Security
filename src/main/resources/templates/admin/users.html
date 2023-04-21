@@ -5,6 +5,8 @@
     <title>Admin panel</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<style>
+</style>
 
 </head>
 
@@ -131,9 +133,9 @@
                         </div>
 
 
-                        <label th:for="${'roles' + user.user_id}" class="container-fluid col-6">Role</label>
+                        <label th:for="${'roles' + user.user_id}" class="col-form-label">Role</label>
                         <div class="form-group">
-                            <select class="custom-select" name="roles" multiple required readonly>
+                            <select class="custom-select" name="roles" multiple disabled>
                                 <th:block th:each="role : ${allRoles}">
                                     <option th:value="${role.id}" th:text="${role.name.replaceAll('ROLE_', '')}"
                                             th:selected="${user.roles.contains(role)}"></option>
@@ -170,51 +172,69 @@
 </nav>
 <!--Nav bar HEAD-->
 
-<table class="table table-striped table-hover">
-    <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Edit</th>
-        <th>Delete</th>
+<!--Tab new user-->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Users table</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">New user</a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <!--Admin table-->
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
 
-        <th></th>
-        <th></th>
-    </tr>
-    <th:block th:each="user : ${allUsers}">
-        <tr>
-            <td th:text="${user.getUser_id}"></td>
-            <td th:text="${user.username}"></td>
-            <td th:text="${user.lastname}"></td>
-            <td th:text="${user.age}"></td>
-            <td th:text="${user.email}"></td>
-            <td>
-                <th:block th:each="role : ${user.roles}">
-                    <span th:text="${role.name.replaceAll('ROLE_', '')}"></span>
-                </th:block>
-            </td>
+                <th></th>
+                <th></th>
+            </tr>
+            <th:block th:each="user : ${allUsers}">
+                <tr>
+                    <td th:text="${user.getUser_id}"></td>
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.lastname}"></td>
+                    <td th:text="${user.age}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td>
+                        <th:block th:each="role : ${user.roles}">
+                            <span th:text="${role.name.replaceAll('ROLE_', '')}"></span>
+                        </th:block>
+                    </td>
 
-            <td>
-                <button type="button" class="btn btn-info"
-                        data-toggle="modal" th:data-target="${'#EditUser'+ user.user_id}" data-user="${user}">
-                    Edit
-                </button>
-            </td>
-            <!--           -->
-            <td>
-                <button type="button" class="btn btn-danger"
-                        data-toggle="modal" th:data-target="${'#DeleteUser'+ user.user_id}" data-user="${user}">
-                    Delete
-                </button>
-                </a>
-            </td>
+                    <td>
+                        <button type="button" class="btn btn-info"
+                                data-toggle="modal" th:data-target="${'#EditUser'+ user.user_id}" data-user="${user}">
+                            Edit
+                        </button>
+                    </td>
+                    <!--           -->
+                    <td>
+                        <button type="button" class="btn btn-danger"
+                                data-toggle="modal" th:data-target="${'#DeleteUser'+ user.user_id}" data-user="${user}">
+                            Delete
+                        </button>
+                        </a>
+                    </td>
 
-        </tr>
-    </th:block>
-</table>
+                </tr>
+            </th:block>
+        </table>
+
+        <!--End admin table--></div>
+    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"></div>
+</div>
+<!--Tab new user-->
+
 
 <br>
 <input type="button" value="Add" onclick="window.location.href='/admin/addnewuser'"/>
