@@ -24,6 +24,7 @@ public class AdminController {
     public String showAllUsers(Model model, Principal principal) {
         model.addAttribute("allUsers", userService.findAll());
         model.addAttribute("user",userService.findByUserByEmail(principal.getName()));
+        model.addAttribute("allRoles", userService.findAllRoles());
         return "admin/users";
     }
 

@@ -27,23 +27,57 @@
                     <form th:action="@{/admin/edit/{id}(id=${user.user_id})}" th:object="${user}" th:method="patch">
                         <div class="form-group">
                             <label th:for="${'user_id'+user.user_id}" class="col-form-label">ID</label>
-                            <input class="form-control" type="text" th:id="${'user_id'+user.user_id}"
+                            <input class="form-control" type="number" th:id="${'user_id'+user.user_id}"
                                    th:value="${user.user_id}"
                                    readonly>
                         </div>
 
                         <div class="form-group">
-                            <label th:for="${'first name'+user.username}" class="col-form-label">First name</label>
-                            <input class="form-control" type="text" th:id="${'first name'+user.username}"
-                                   th:value="${user.username}">
+                            <label th:for="${'first name'+user.firstname}" class="col-form-label">First name</label>
+                            <input class="form-control" type="text" th:id="${'first name'+user.firstname}"
+                                   th:value="${user.firstname}" th:name="firstname">
                         </div>
 
-                    </form>
+                        <div class="form-group">
+                            <label th:for="${'last name'+user.lastname}" class="col-form-label">Last name</label>
+                            <input class="form-control" type="text" th:id="${'first name'+user.lastname}"
+                                   th:value="${user.lastname}" th:name="lastname">
+                        </div>
+
+                        <div class="form-group">
+                            <label th:for="${'age'+user.age}" class="col-form-label">Age</label>
+                            <input class="form-control" type="number" th:id="${'first name'+user.age}"
+                                   th:value="${user.age}" th:name="age">
+                        </div>
+
+                        <div class="form-group">
+                            <label th:for="${'email'+user.email}" class="col-form-label">Email</label>
+                            <input class="form-control" type="email" th:id="${'first name'+user.email}"
+                                   th:value="${user.email}" th:name="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label th:for="${'password'+user.password}" class="col-form-label">Password</label>
+                            <input class="form-control" type="password" th:id="${'password'+user.password}"
+                                   value="" th:name="password">
+                        </div>
+
+                        <label th:for="${'roles' + user.user_id}" class="container-fluid col-6">Role</label>
+                        <div class="form-group">
+                            <select class="custom-select" name="roles" multiple required>
+                                <th:block th:each="role : ${allRoles}">
+                                    <option th:value="${role.id}" th:text="${role.name.replaceAll('ROLE_', '')}"
+                                            th:selected="${user.roles.contains(role)}"></option>
+                                </th:block>
+                            </select>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Edit</button>
+                    <button type="submit" class="btn btn-primary">Edit
+                    </button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -88,10 +122,9 @@
             <td th:text="${user.lastname}"></td>
             <td th:text="${user.age}"></td>
             <td th:text="${user.email}"></td>
-            <td th:text="${user.password}"></td>
             <td>
                 <th:block th:each="role : ${user.roles}">
-                    <span th:text="${role.name}"></span>
+                    <span th:text="${role.name.replaceAll('ROLE_', '')}"></span>
                 </th:block>
             </td>
 
@@ -114,6 +147,7 @@
 
 <br>
 <input type="button" value="Add" onclick="window.location.href='/admin/addnewuser'"/>
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

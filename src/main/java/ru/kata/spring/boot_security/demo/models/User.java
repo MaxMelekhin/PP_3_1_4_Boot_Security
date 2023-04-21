@@ -14,16 +14,19 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
-    @Column(name = "username")
-    private String username;
+//    @Column(name = "username")
+//    private String username;
+    @Column(name = "firstname")
+    private String firstname;
     @Column(name = "lastname")
     private String lastname;
-    @Column(name = "password")
-    private String password;
     @Column(name = "age")
     private int age;
     @Column(name = "email")
     private String email;
+    @Column(name = "password")
+    private String password;
+
 
     @ManyToMany
     @JoinTable(name = "users_roles",
@@ -35,6 +38,11 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
+    }
+
+    @Override
+    public String getUsername() {
+        return firstname;
     }
 
     @Override
