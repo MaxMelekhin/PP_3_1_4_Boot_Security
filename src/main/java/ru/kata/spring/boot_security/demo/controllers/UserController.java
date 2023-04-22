@@ -19,8 +19,9 @@ public class UserController {
     }
 
     @GetMapping
-    public String showUser( Model model,Principal principal) {
+    public String showUser(Model model, Principal principal) {
         model.addAttribute("user", userService.findByUserByEmail(principal.getName()));
+        model.addAttribute("allRoles", userService.findAllRoles());
         return "user";
     }
 }

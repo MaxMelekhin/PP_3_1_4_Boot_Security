@@ -28,32 +28,34 @@
 <!--Table user-->
 <h1>User information-page</h1>
 <table class="table table-striped">
+    <h3>
+        About user
+    </h3>
     <thead>
     <tr>
-        <th scope="col">ID</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Age</th>
-        <th scope="col">Email</th>
-        <th scope="col">Role</th>
-
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Role</th>
     </tr>
     </thead>
     <tbody>
-    <th:block th:each="user : ${allUsers}">
+    <form th:object="${user}" th:method="get">
         <tr>
+            <td th:text="${user.user_id}"></td>
             <td th:text="${user.firstname}"></td>
             <td th:text="${user.lastname}"></td>
             <td th:text="${user.age}"></td>
             <td th:text="${user.email}"></td>
             <td>
-                <th:block th:each="role : ${allRoles}">
+                <th:block th:each="role : ${user.roles}">
                     <span th:text="${role.name.replaceAll('ROLE_', '')}"></span>
                 </th:block>
             </td>
-
         </tr>
-    </th:block>
+    </form>
     </tbody>
 </table>
 <!--End of table user-->
