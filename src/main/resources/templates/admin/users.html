@@ -231,9 +231,10 @@
             </th:block>
         </table>
     </div>
-        <!--End admin table-->
+    <!--End admin table-->
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-        <form th:action="@{saveuser}" th:object="${newUser}" th:method="post">
+        <h3>Add new user</h3>
+        <form th:action="@{admin/saveuser}" th:object="${newUser}" th:method="post">
 
             <div class="form-group">
                 <label for="firstname" class="col-form-label">First name</label>
@@ -265,21 +266,20 @@
                        name="password">
             </div>
 
-            <label th:for="${'roles' + user.user_id}" class="col-form-label">Role</label>
+            <label for="roles" class="col-form-label">Role</label>
             <div class="form-group">
-                <select class="custom-select" name="roles" multiple required>
+                <select class="custom-select" name="roles" id="roles" multiple required>
                     <th:block th:each="role : ${allRoles}">
                         <option th:value="${role.id}" th:text="${role.name.replaceAll('ROLE_', '')}"
-                                th:selected="${user.roles.contains(role)}"></option>
+                        ></option>
                     </th:block>
                 </select>
             </div>
-
             <button type="submit" class="btn-success">Add new user</button>
         </form>
     </div>
 </div>
-<!--Tab new user-->
+<!-- End tab new user-->
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
