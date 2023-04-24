@@ -5,94 +5,10 @@
     <title>Admin panel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        table {
-            padding-top: 50px;
-        }
-
-        .table {
-            padding-top: 50px;
-            width: 90%;
-        }
-
-        body {
-            border-collapse: collapse !important;
-            background-color: whitesmoke;
-            height: 100vh !important;
-        }
-
-        [required] {
-            background-color: #ffea7d;
-        }
-
-        #add {
-            text-align: center;
-            margin: auto;
-            max-width: 30%;
-        }
-
-        h3 {
-            padding-top: 15px;
-            padding-bottom: 15px;
-            padding-left: 50px;
-            margin-bottom: 30px;
-            background-color: whitesmoke;
-            border-bottom: 1px solid gainsboro;
-        }
-
-        #home {
-            background-color: white;
-            border: 1px solid gainsboro;
-        }
-
-        .row {
-            height: 100%;
-        }
-
-        .col-10 {
-            padding-left: 40px;
-            padding-right: 40px;
-        }
-
-        .menu {
-            background-color: white;
-            padding-right: 0px;
-        }
-
-        .modal-body {
-            margin: auto;
-        }
-
-        [multiple] {
-            height: 55px !important;
-        }
-
-        .col-form-label {
-            font-weight: bold;
-            padding-bottom: 0px;
-        }
-
-        .container-fluid {
-            font-weight: bold;
-            padding-bottom: 0px;
-        }
-
-        #addNewUser {
-            background-color: white;
-            padding-bottom: 40px;
-            border: 1px solid gainsboro;
-        }
-
-        label {
-            margin-bottom: 0px;
-        }
-    </style>
-
-
+    <link href="/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-
 <!--Modal window for edit-->
 <th:block th:each="user : ${allUsers}">
     <div class="modal fade" th:id="${'EditUser'+ user.user_id}" tabindex="-1" role="dialog"
