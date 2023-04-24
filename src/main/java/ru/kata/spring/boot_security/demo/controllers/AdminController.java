@@ -29,24 +29,10 @@ public class AdminController {
         return "admin/users";
     }
 
-    @GetMapping("/addnewuser")
-    public String addNewUser(Model model) {
-        model.addAttribute("user", new User());
-        model.addAttribute("allRoles", userService.findAllRoles());
-        return "admin/new";
-    }
-
     @PostMapping("/saveuser")
     public String saveUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/admin";
-    }
-
-    @GetMapping("/{id}/edit")
-    public String editUser(@PathVariable("id") long id, Model model) {
-        model.addAttribute("user", userService.findUserById(id));
-        model.addAttribute("allRoles", userService.findAllRoles());
-        return "admin/edit";
     }
 
     @PatchMapping("/edit/{id}")
