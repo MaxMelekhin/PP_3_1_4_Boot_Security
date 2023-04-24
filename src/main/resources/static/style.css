@@ -13,14 +13,14 @@ body {
     height: 100vh !important;
 }
 
-[required] {
-    background-color: #ffea7d;
+input:required:valid{
+    background-color: #ffed99;
 }
 
 #add {
     text-align: center;
     margin: auto;
-    max-width: 30%;
+    max-width: 20%;
 }
 
 h3 {
