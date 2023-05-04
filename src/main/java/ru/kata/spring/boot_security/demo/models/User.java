@@ -13,6 +13,7 @@ import java.util.Collection;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long user_id;
     @Column(name = "firstname")
     private String firstname;
@@ -24,7 +25,6 @@ public class User implements UserDetails {
     private String email;
     @Column(name = "password")
     private String password;
-
 
     @ManyToMany
     @JoinTable(name = "users_roles",
